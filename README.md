@@ -3,10 +3,10 @@
   
 ### Hackathon Location
 
-<p>GS1 Germany Knowledge Center Rooms: Cologne & Tokyo
-Address:
-Stolberger Str. 108, 50933 Cologne, Germany</p>
-
+<p>Fairfield by Marriott Bali Legian</p>
+<div>
+<p>Address: Jl. Sri Rama No.8 C, Legian, Kuta, Kabupaten Badung, Bali 80361, Indonesia</p>
+</div>
 
 <p><strong>Introduction</strong></p>
 <p>Do you know what's in your fishstick? Was that salmon caught in Alaska and processed in China? Do you know the story of how your tuna was caught, canned and then made its way to your dinner table?</p>
@@ -73,9 +73,9 @@ Stolberger Str. 108, 50933 Cologne, Germany</p>
       </div>
 
   <div>
-  <p>The Challenge Post submission form for the Seafood Trackathon will be open on 16:00 (CEST) October 21, 2019 and closed on 16:00 (CEST) October 22, 2019 and must be submitted by 15:59 (CEST) on October 22, 2019 for consideration in the prizes. Only one submission per team is permitted. To enter the Seafood Trackathon:</p>
+  <p>The Challenge Post submission form for the Seafood Trackathon will be open on 16:00 (UTC+08:00) October 26, 2019 and closed on 16:00 (UTC+08:00) October 27, 2019 and must be submitted by 15:59 (UTC+08:00) on October 27, 2019 for consideration in the prizes. Only one submission per team is permitted. To enter the Seafood Trackathon:</p>
 <ul>
-<li>For a submission to be eligible, the submission must be filed electronically to the Seafood Trackathon 2019 Challenge Post site by 15:59 (CEST) October 22, 2019;</li>
+<li>For a submission to be eligible, the submission must be filed electronically to the Seafood Trackathon 2019 Challenge Post site by 15:59 (UTC+08:00) October 27, 2019;</li>
 <li>Submissions containing the new apps must be submitted electronically via Github;</li>
 <li>It is highly recommended that all submissions include a 3-minute video demonstration of the app / or solution (online version only);</li>
 <li>Submissions must be entirely the original work of the entrant(s) - whether it is an individual or team;</li>
