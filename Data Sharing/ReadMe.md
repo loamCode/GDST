@@ -17,11 +17,11 @@ Here we will have an example of PULLING one or more events using a GET operation
 
 This is an example Request for pulling one or more EPCIS events in EPCIS format.
 
-**Request**<br/>
+<u>**Request**<br/></u>
 **URL:** https://example.org/GDST/events/urn:gdst:product:lot:class:123.321<br/>
 **HTTP Method:** GET<br/>
 
-**Response**
+<u>**Response**</u>
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <epcis:EPCISDocument schemaVersion="1.2" creationDate="2013-06-
@@ -73,12 +73,12 @@ This is an example Request for pulling one or more EPCIS events in EPCIS format.
 Events can be posted to a GDST Compliant REST API using the POST Method against the "events" path on the REST API. When posting events, there is also an additional optional HTTP Header called **GDST-Response-URL** that can be used to indicate a GDST Compliant REST API that can be used to look up the Master Data used in the EPCIS Events.
 
 
-**Request**<br/>
+<u>**Request**</u><br/>
 **URL:** https://example.org/GDST/events/<br/>
 **HTTP Method:** POST<br/>
 **GDST-Response-URL:** https://sender-example.org/GDST/<br/>
 
-**Request Content**
+<u>**Request Content**</u>
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <epcis:EPCISDocument schemaVersion="1.2" creationDate="2013-06-
@@ -140,11 +140,11 @@ Here we will have an example of PULLING a trade item using a GET operation again
 
 This is an example Request for pulling a Trade Item in GDSN format.
 
-**Request**<br/>
+<u>**Request**</u><br/>
 **URL:** https://example.org/GDST/gtin/29239439699003?format=gdsn<br/>
 **HTTP Method:** GET<br/>
 
-**Response**
+<u>**Response**</u>
 ```xml
 <catalogue_item_notification:catalogueItemNotificationMessage
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -210,11 +210,11 @@ Here we will have an example of PULLING a trade item using a GET operation again
 
 This is an example Request for pulling a Trade Item in EPCIS format.
 
-**Request**<br/>
+<u>**Request**</u><br/>
 **URL:** https://example.org/GDST/gtin/29239439699003<br/>
 **HTTP Method:** GET<br/>
 
-**Response**
+<u>**Response**</u>
 ```xml
 <epcismd:EPCISMasterDataDocument
     xmlns:epcismd="urn:epcglobal:epcis-masterdata:xsd:1"
@@ -250,11 +250,11 @@ Here we will have an example of PULLING a location using a GET operation against
 
 This is an example Request for pulling a Location in EPCIS format.
 
-**Request**<br/>
+<u>**Request**</u><br/>
 **URL:** https://example.org/GDST/gln/urn:gdst:location:loc:123.321<br/>
 **HTTP Method:** GET<br/>
 
-**Response**
+<u>**Response**</u>
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <epcismd:EPCISMasterDataDocument
