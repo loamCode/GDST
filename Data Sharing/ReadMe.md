@@ -17,9 +17,9 @@ Here we will have an example of PULLING one or more events using a GET operation
 
 This is an example Request for pulling one or more EPCIS events in EPCIS format.
 
-**Request**
-**URL:** https://example.org/GDST/events/urn:gdst:product:lot:class:123.321
-**HTTP Method:** GET
+**Request**<br/>
+**URL:** https://example.org/GDST/events/urn:gdst:product:lot:class:123.321<br/>
+**HTTP Method:** GET<br/>
 
 **Response**
 ```xml
@@ -73,12 +73,12 @@ This is an example Request for pulling one or more EPCIS events in EPCIS format.
 Events can be posted to a GDST Compliant REST API using the POST Method against the "events" path on the REST API. When posting events, there is also an additional optional HTTP Header called **GDST-Response-URL** that can be used to indicate a GDST Compliant REST API that can be used to look up the Master Data used in the EPCIS Events.
 
 
-**Request**
-**URL:** https://example.org/GDST/events/
-**HTTP Method:** POST
-**GDST-Response-URL:** https://sender-example.org/GDST/
+**Request**<br/>
+**URL:** https://example.org/GDST/events/<br/>
+**HTTP Method:** POST<br/>
+**GDST-Response-URL:** https://sender-example.org/GDST/<br/>
 
-Request Content
+**Request Content**
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <epcis:EPCISDocument schemaVersion="1.2" creationDate="2013-06-
@@ -126,7 +126,7 @@ Request Content
 </epcis:EPCISDocument>
 ```
 
-**Response**
+**Response**<br/>
 No response is received from the server. Simply a status code of 200.
 
 # Trade Items
@@ -140,9 +140,9 @@ Here we will have an example of PULLING a trade item using a GET operation again
 
 This is an example Request for pulling a Trade Item in GDSN format.
 
-**Request**
-**URL:** https://example.org/GDST/gtin/29239439699003?format=gdsn
-**HTTP Method:** GET
+**Request**<br/>
+**URL:** https://example.org/GDST/gtin/29239439699003?format=gdsn<br/>
+**HTTP Method:** GET<br/>
 
 **Response**
 ```xml
@@ -210,9 +210,9 @@ Here we will have an example of PULLING a trade item using a GET operation again
 
 This is an example Request for pulling a Trade Item in EPCIS format.
 
-**Request**
-**URL:** https://example.org/GDST/gtin/29239439699003
-**HTTP Method:** GET
+**Request**<br/>
+**URL:** https://example.org/GDST/gtin/29239439699003<br/>
+**HTTP Method:** GET<br/>
 
 **Response**
 ```xml
@@ -250,9 +250,9 @@ Here we will have an example of PULLING a location using a GET operation against
 
 This is an example Request for pulling a Location in EPCIS format.
 
-**Request**
-**URL:** https://example.org/GDST/gln/urn:gdst:location:loc:123.321
-**HTTP Method:** GET
+**Request**<br/>
+**URL:** https://example.org/GDST/gln/urn:gdst:location:loc:123.321<br/>
+**HTTP Method:** GET<br/>
 
 **Response**
 ```xml
