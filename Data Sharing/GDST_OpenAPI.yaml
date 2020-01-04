@@ -1,0 +1,149 @@
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/BlueCoder77/GDST/1.0.0
+info:
+  description: This is an OpenAPI developed by GDST to help with interoperable data sharing in Seafood Traceability. This API is an extension of the EPCIS 2.0 OpenAPI currently in development.
+  version: "1.2.0"
+  title: GDST API
+  contact:
+    email: philip.heggelund@duckscape.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: push
+    description: Operations used for sending information.
+  - name: pull
+    description: Operations used for fetching information.
+paths:
+  /gtin:
+    get:
+      tags:
+        - pull
+      summary: Get a Trade Item using a GTIN/Private Industry URI.
+      operationId: getGTIN
+      description: This is a GET method where the user will provide a single Trade Item Identifiers (GTINs) a Query Parameters. It is recommended that all Master Data is requested via this method first. If Master Data is not able to be retrieved in the GDSN format, then an exception will be returned.
+      parameters:
+        - in: path
+          name: gtin
+          description: Pass a GTIN in EPCIS URI format according to the CBV 1.2.
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: format
+          description: Requests the GTIN be passed back in a specific format. If that format is not available, then the EPCIS format is passed back. If the format is not recognized, then the EPCIS format is returned.
+          required: false
+          schema: 
+            type: string
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/xml:
+              schema: 
+                type: 'string'
+                externalDocs:
+                  description: 'The XML Schema to be used for the response content.'
+                  url: 'https://schema.com/CatalogueItem.xsd'
+        '400':
+          description: Invalid GTIN.
+        '401':
+          description: Authorization failed and is required.
+        '420':
+          description: GTIN not recognized.
+        '5XX':
+          description: Unexpected error.
+  /gln:
+    get:
+      tags:
+        - pull
+      summary: Get a Location using a GLN/Private Industry URI.
+      operationId: getGLN
+      description: 'Requests a specific GLN in EPCIS Master Data Format.'
+      parameters:
+        - in: path
+          name: gln
+          description: Pass a GLN in EPCIS URI format according to the CBV 1.2.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: GLN successfully looked up and returned.
+          content:
+            application/xml:
+              schema:
+                type: 'string'
+                externalDocs:
+                  description: 'The XML Schema to be used for the response content.'
+                  url: 'https://schema.com/EPCISMasterData.xsd'
+        '400':
+          description: GLN is not a valid format.
+        '401':
+          description: Authorization failed and is required.
+        '420':
+          description: GLN not recognized.
+        '5XX':
+          description: Unexpected error.
+  /events:
+    get:
+      tags:
+        - epcis
+      summary: Get one or more events that contain the given EPC.
+      operationId: getEvents
+      description: 'This is a GET method where the sender is requesting a list of events that are associated with a specific EPC. Some events may be witheld if Authorization is not enough.'
+      parameters:
+        - in: path
+          name: epc
+          description: Pass GTIN+LOT EPC or GTIN+Serial EPC in EPCIS URI format according to the CBV 1.2.
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Returns all EPCIS events that contain the given EPC.
+          content:
+            application/xml:
+              schema:
+                type: "string"
+                externalDocs:
+                  description: 'EPCIS Message Format'
+                  url: https://example.org/EPCIS.xsd
+        '400':
+          description: GLN is not a valid format.
+        '401':
+          description: Authorization failed and is required.  
+        '420':
+          description: GLN not recognized.
+        '5XX':
+          description: Unexpected error.
+    post:
+      tags:
+        - epcis
+      summary: Posts one o more EPCIS events to the server.
+      operationId: postEvents
+      description: 'Posts one o more EPCIS events to the server.'
+      responses:
+        '200':
+          description: The events were accepted by the server and have been successfully processed.
+        '400':
+          description: EPCIS Events not in valid format.
+        '401':
+          description: Authorization failed and is required.
+        '420':
+          description: EPCIS Events are in valid format, but are invalid.
+        '421':
+          description: Incomplete EPCIS Events. There is Master Data referenced in the EPCIS events that is not contained in the posted XML. Either no GDST-Response-URL http header was supplied, or the look-up server returned an error while trying to resolve the Master Data. EPCIS events were not processed successfully.  
+        '5XX':
+          description: Unexpected error.
+      requestBody:
+        content:
+          application/xml:
+              schema:
+                type: "string"
+                externalDocs:
+                  description: 'EPCIS format'
+                  url: https://example.org/EPCIS.xsd
