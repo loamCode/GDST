@@ -1,6 +1,11 @@
 # Data Sharing
 Welcome to our section on sharing data in GDST. Here we will cover everything related to sharing data including covering the proposed Open REST API, and how to implement that.
 
+ - [Events](#Events)
+ - [Trade Items](#Trade%20Items)
+ - [Locations](#Locations)
+ - [Swagger.IO](#Using%20Swagger.IO)
+
 # Events
 Here we are going to cover how to pull and push EPCIS Events to/from a GDST compliant server. For the sake of the examples here, we will be using the following base URL, https://example.org/GDST/
 
