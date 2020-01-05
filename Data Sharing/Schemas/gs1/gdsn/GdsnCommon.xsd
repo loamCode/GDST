@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gdsn_common="urn:gs1:gdsn:gdsn_common:xsd:3" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gdsn:gdsn_common:xsd:3" version="3.1">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2015
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.1
+Date of creation: August 2015
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:element abstract="true" name="document" type="shared_common:DocumentType"/>
+    <xsd:complexType name="AdditionalTradeItemClassificationCodeListCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="AdditionalTradeItemDimensionsType">
+        <xsd:sequence>
+            <xsd:element name="depth" type="shared_common:MeasurementType"/>
+            <xsd:element name="dimensionTypeCode" type="gdsn_common:DimensionTypeCodeType"/>
+            <xsd:element name="height" type="shared_common:MeasurementType"/>
+            <xsd:element name="width" type="shared_common:MeasurementType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AdditiveInformationType">
+        <xsd:sequence>
+            <xsd:element name="additiveName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="levelOfContainmentCode" type="gdsn_common:LevelOfContainmentCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AspectRatioDescriptionCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="AspectRatioDimensionCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="AspectRatioInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="aspectRatioDescriptionCode" type="gdsn_common:AspectRatioDescriptionCodeType"/>
+            <xsd:element minOccurs="0" name="aspectRatioDimensionCode" type="gdsn_common:AspectRatioDimensionCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CatalogueItemConfirmationStatusCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="CatalogueItemReferenceType">
+        <xsd:sequence>
+            <xsd:element name="dataSource" type="shared_common:GLNType"/>
+            <xsd:element name="gtin" type="shared_common:GTINType"/>
+            <xsd:element name="targetMarketCountryCode" type="shared_common:CountryCodeType"/>
+            <xsd:element minOccurs="0" name="targetMarketSubdivisionCode" type="shared_common:CountrySubdivisionCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CertificationInformationType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalCertificationOrganisationIdentifier" type="shared_common:AdditionalPartyIdentificationType"/>
+            <xsd:element minOccurs="0" name="certificationAgency">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="certificationOrganisationIdentifier" type="shared_common:GLNType"/>
+            <xsd:element minOccurs="0" name="certificationStandard">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" name="certification" type="gdsn_common:CertificationType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CertificationType">
+        <xsd:sequence>
+            <xsd:element name="certificationValue">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="certificateIssuanceDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="certificationAssessmentDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="certificationEffectiveEndDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="certificationEffectiveStartDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="certificationIdentification">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="referencedFileInformation" type="gdsn_common:ReferencedFileInformationType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CompoundStringAttributeValuePairType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="attributeName" use="required">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="70"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="attributeCode" use="required">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="80"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="codeListNameCode" use="required">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="35"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="codeListVersion">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="35"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="ConfirmationStatusReasonCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="CorrectiveActionCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="CountryType">
+        <xsd:sequence>
+            <xsd:element name="countryCode" type="shared_common:CountryCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="countrySubdivisionCode" type="shared_common:CountrySubdivisionCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CriteriaJoinTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="CriteriaOperatorTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="DangerousGoodsTransportCategoryCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="DangerousHazardousLabelType">
+        <xsd:sequence>
+            <xsd:element name="dangerousHazardousLabelNumber">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element name="dangerousHazardousLabelSequenceNumber" type="xsd:nonNegativeInteger"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="Description250Type">
+        <xsd:simpleContent>
+            <xsd:extension base="gdsn_common:String250Type">
+                <xsd:attribute name="languageCode" use="required">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="80"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+                <xsd:attribute name="codeListVersion">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="35"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="DimensionTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="DisplayTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="DistributionMethodCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="DocumentCommandHeaderType">
+        <xsd:sequence>
+            <xsd:element name="documentCommandIdentification" type="shared_common:EntityIdentificationType"/>
+        </xsd:sequence>
+        <xsd:attribute name="type" type="gdsn_common:DocumentCommandEnumerationType"/>
+    </xsd:complexType>
+    <xsd:complexType name="DocumentCommandType">
+        <xsd:sequence>
+            <xsd:element name="documentCommandHeader" type="gdsn_common:DocumentCommandHeaderType"/>
+            <xsd:element maxOccurs="unbounded" ref="gdsn_common:document"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="EnumerationValueInformationType">
+        <xsd:sequence>
+            <xsd:element name="enumerationValue">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="enumerationValueDefinition" type="shared_common:Description1000Type"/>
+            <xsd:element minOccurs="0" name="enumerationValueDescription" type="shared_common:Description1000Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ExceptionMessageTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="ExternalCodeValueInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="externalAgencyName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="externalCodeListName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="externalCodeListVersion">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" name="enumerationValueInformation" type="gdsn_common:EnumerationValueInformationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FarmingAndProcessingInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="geneticallyModifiedDeclarationCode" type="gdsn_common:LevelOfContainmentCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="growingMethodCode" type="gdsn_common:GrowingMethodCodeType"/>
+            <xsd:element minOccurs="0" name="irradiatedCode" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="maturationMethodCode" type="gdsn_common:MaturationMethodCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="preservationTechniqueCode" type="gdsn_common:PreservationTechniqueTypeCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="sourceAnimalCode" type="gdsn_common:SourceAnimalCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GrowingMethodCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="GS1_AttributeValuePairListType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="compoundStringAVP" type="gdsn_common:CompoundStringAttributeValuePairType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="stringAVP" type="gdsn_common:StringAttributeValuePairType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="HazardousInformationDetailType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="classOfDangerousGoods">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="4"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="dangerousGoodsClassificationCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="dangerousGoodsHazardousCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="dangerousGoodsPackingGroup">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="dangerousGoodsShippingName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="dangerousGoodsSpecialProvisions">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="dangerousGoodsTechnicalName" type="shared_common:Description200Type"/>
+            <xsd:element minOccurs="0" name="dangerousGoodsTransportCategoryCode" type="gdsn_common:DangerousGoodsTransportCategoryCodeType"/>
+            <xsd:element minOccurs="0" name="eRGNumber">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="extremelyHazardousSubstanceQuantity" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="hazardousClassSubsidiaryRiskCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="netMassOfExplosives" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="unitedNationsDangerousGoodsNumber">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="\d{4}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="dangerousHazardousLabel" type="gdsn_common:DangerousHazardousLabelType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="HazardousInformationHeaderType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="aDRDangerousGoodsLimitedQuantitiesCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="aDRDangerousGoodsPackagingTypeCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="aDRTunnelRestrictionCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="dangerousGoodsRegulationAgency">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="dangerousGoodsRegulationCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="flashPointTemperature" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="hazardousMaterialAdditionalInformation" type="shared_common:Description1000Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="hazardousInformationDetail" type="gdsn_common:HazardousInformationDetailType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="HierarchyDeletionReasonCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="IncotermInformationType">
+        <xsd:sequence>
+            <xsd:element name="incotermCode" type="shared_common:IncotermsCodeType"/>
+            <xsd:element minOccurs="0" name="incotermCodeLocation" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="incotermCountryCode" type="shared_common:CountryCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="IsReloadReasonCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="LevelOfContainmentCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="MaturationMethodCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="MeasurementPrecisionCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="OrganicClaimAgencyCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="OrganicClaimType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="organicClaimAgencyCode" type="gdsn_common:OrganicClaimAgencyCodeType"/>
+            <xsd:element minOccurs="0" name="organicPercentClaim" type="xsd:decimal"/>
+            <xsd:element minOccurs="0" name="organicTradeItemCode" type="gdsn_common:OrganicTradeItemCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OrganicInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="organicProductPlaceOfFarmingCode" type="gdsn_common:OrganicProductPlaceOfFarmingCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="organicClaim" type="gdsn_common:OrganicClaimType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="OrganicProductPlaceOfFarmingCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="OrganicTradeItemCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingMaterialTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PartyInRoleType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalPartyIdentification" type="shared_common:AdditionalPartyIdentificationType"/>
+            <xsd:element minOccurs="0" name="gln" type="shared_common:GLNType"/>
+            <xsd:element minOccurs="0" name="partyAddress">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="500"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="partyName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="partyRoleCode" type="shared_common:PartyRoleCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PhaseOfMatterCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PlaceOfProductActivityType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="countryOfOriginStatement" type="shared_common:Description500Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="provenanceStatement" type="shared_common:Description500Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="countryOfOrigin" type="gdsn_common:CountryType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productActivityDetails" type="gdsn_common:ProductActivityDetailsType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PreliminaryItemStatusCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PreparationTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PreservationTechniqueTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="ProductActivityDetailsType">
+        <xsd:sequence>
+            <xsd:element name="productActivityTypeCode" type="gdsn_common:ProductActivityTypeCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productActivityRegionDescription" type="shared_common:Description500Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="countryOfActivity" type="gdsn_common:CountryType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productActivityRegionZoneCodeReference" type="gdsn_common:ExternalCodeValueInformationType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductActivityTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="ReferencedFileInformationType">
+        <xsd:sequence>
+            <xsd:element name="referencedFileTypeCode" type="gdsn_common:ReferencedFileTypeCodeType"/>
+            <xsd:element minOccurs="0" name="contentDescription" type="shared_common:Description70Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="fileCreationProgram">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="fileEffectiveEndDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="fileEffectiveStartDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="fileFormatDescription" type="shared_common:Description70Type"/>
+            <xsd:element minOccurs="0" name="fileFormatName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="fileLanguageCode" type="shared_common:LanguageCodeType"/>
+            <xsd:element minOccurs="0" name="fileName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="fileOptimalViewerName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="fileOriginCountryCode" type="shared_common:CountryCodeType"/>
+            <xsd:element minOccurs="0" name="fileVersion">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="uniformResourceIdentifier">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="2500"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReferencedFileTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="ReferencedTradeItemTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="RegistrationInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="registrationAgency">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="registrationEndDateTime" type="xsd:dateTime"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="registrationNumber">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="restrictionDescription" type="shared_common:Description1000Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RegistryCatalogueItemStateCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="SourceAnimalCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="StringAttributeValuePairType">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="attributeName" use="required">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:maxLength value="70"/>
+                            <xsd:minLength value="1"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                </xsd:attribute>
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="SustainabilityFeatureCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="TemperatureQualifierCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="TradeChannelCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemContextCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemUnitDescriptorCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="TransactionType">
+        <xsd:sequence>
+            <xsd:element name="transactionIdentification" type="shared_common:EntityIdentificationType"/>
+            <xsd:element name="documentCommand" type="gdsn_common:DocumentCommandType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:simpleType name="DocumentCommandEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ADD"/>
+            <xsd:enumeration value="CHANGE_BY_REFRESH"/>
+            <xsd:enumeration value="CORRECT"/>
+            <xsd:enumeration value="DELETE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="String250Type">
+        <xsd:restriction base="xsd:string">
+            <xsd:maxLength value="250"/>
+            <xsd:minLength value="1"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="SynchronisationConfirmationStateEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="RECEIVED"/>
+            <xsd:enumeration value="REJECTED"/>
+            <xsd:enumeration value="REVIEW"/>
+            <xsd:enumeration value="SYNCHRONISED"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

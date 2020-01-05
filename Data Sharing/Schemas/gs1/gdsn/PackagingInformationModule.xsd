@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gdsn_common="urn:gs1:gdsn:gdsn_common:xsd:3" xmlns:packaging_information="urn:gs1:gdsn:packaging_information:xsd:3" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gdsn:packaging_information:xsd:3" version="3.1">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2015
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.1
+Date of creation: August 2015
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:gdsn:gdsn_common:xsd:3" schemaLocation="GdsnCommon.xsd"/>
+    <xsd:element name="packagingInformationModule" type="packaging_information:PackagingInformationModuleType"/>
+    <xsd:complexType name="AverageDistanceToPointOfPackagingCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="CompositeMaterialDetailType">
+        <xsd:sequence>
+            <xsd:element name="packagingMaterialTypeCode" type="gdsn_common:PackagingMaterialTypeCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingMaterialCompositionQuantity" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="packagingMaterialThickness" type="shared_common:MeasurementType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PackageDepositType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="depositValueEffectiveDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="depositValueEndDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="returnablePackageDepositAmount" type="shared_common:AmountType"/>
+            <xsd:element minOccurs="0" name="returnablePackageDepositIdentification" type="shared_common:IdentifierType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="returnablePackageDepositRegion" type="shared_common:TargetMarketType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PackageTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingDimensionType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="packagingDepth" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="packagingHeight" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="packagingWidth" type="shared_common:MeasurementType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingFeatureCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingFunctionCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingInformationModuleType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="doPackagingMaterialsContainLatex" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="numberOfPackagesForSetPiecesGTIN" type="xsd:nonNegativeInteger"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packaging" type="packaging_information:PackagingType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingMaterialAppliedProcessCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingMaterialPerformanceCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingMaterialType">
+        <xsd:sequence>
+            <xsd:element name="packagingMaterialTypeCode" type="gdsn_common:PackagingMaterialTypeCodeType"/>
+            <xsd:element minOccurs="0" name="isPackagingMaterialRecoverable" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="isPrimaryMaterial" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingMaterialAppliedProcessCode" type="packaging_information:PackagingMaterialAppliedProcessCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingCompositeMaterialDescription" type="shared_common:Description70Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingMaterialCoatingTypeDescription" type="shared_common:Description70Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingMaterialCompositionQuantity" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="packagingMaterialLaunchDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="packagingMaterialPerformanceCode" type="packaging_information:PackagingMaterialPerformanceCodeType"/>
+            <xsd:element minOccurs="0" name="packagingMaterialThickness" type="shared_common:MeasurementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="compositeMaterialDetail" type="packaging_information:CompositeMaterialDetailType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingRecyclingProcessTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingRecyclingSchemeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingShapeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingTermsAndConditionsCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PackagingType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="averageDistanceTravelledToPointOfPackagingCode" type="packaging_information:AverageDistanceToPointOfPackagingCodeType"/>
+            <xsd:element minOccurs="0" name="doesPackagingHaveWheels" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="isPackagingExemptFromRefuseObligation" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="isPackagingSuitableForAirShipment" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="isRadioFrequencyIDOnPackaging" type="xsd:boolean"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingFeatureCode" type="packaging_information:PackagingFeatureCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingFunctionCode" type="packaging_information:PackagingFunctionCodeType"/>
+            <xsd:element minOccurs="0" name="packagingLevel" type="xsd:nonNegativeInteger"/>
+            <xsd:element minOccurs="0" name="packagingOwnerIdentification" type="shared_common:GLNType"/>
+            <xsd:element minOccurs="0" name="packagingOwnerName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingRecyclingProcessTypeCode" type="packaging_information:PackagingRecyclingProcessTypeCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingRecyclingSchemeCode" type="packaging_information:PackagingRecyclingSchemeCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingRefundObligationName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingRefuseObligationName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="packagingShapeCode" type="packaging_information:PackagingShapeCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingSustainabilityFeatureCode" type="gdsn_common:SustainabilityFeatureCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingTermsAndConditionsCode" type="packaging_information:PackagingTermsAndConditionsCodeType"/>
+            <xsd:element minOccurs="0" name="packagingTypeCode" type="packaging_information:PackageTypeCodeType"/>
+            <xsd:element minOccurs="0" name="packagingWeight" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="platformTermsAndConditionsCode" type="packaging_information:PlatformTermsAndConditionsCodeType"/>
+            <xsd:element minOccurs="0" name="platformTypeCode" type="packaging_information:PlatformTypeCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="shippingContainerQuantityDescription" type="shared_common:Description200Type"/>
+            <xsd:element minOccurs="0" name="usableProductVolume" type="shared_common:MeasurementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingMaterial" type="packaging_information:PackagingMaterialType"/>
+            <xsd:element minOccurs="0" name="packagingDimension" type="packaging_information:PackagingDimensionType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packageDeposit" type="packaging_information:PackageDepositType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="returnableAsset" type="packaging_information:ReturnableAssetType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="packagingTypeDescription" type="shared_common:Description200Type"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PlatformTermsAndConditionsCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PlatformTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="ReturnableAssetType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="alternativeReturnableAssetIdentification" type="shared_common:AdditionalReturnableAssetIdentificationType"/>
+            <xsd:element minOccurs="0" name="grai" type="shared_common:GRAIType"/>
+            <xsd:element minOccurs="0" name="isReturnableAssetEmpty" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="returnableAssetCapacityContent" type="shared_common:MeasurementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="returnableAssetsContainedQuantity" type="shared_common:QuantityType"/>
+            <xsd:element minOccurs="0" name="returnableAssetOwnerId" type="shared_common:GLNType"/>
+            <xsd:element minOccurs="0" name="returnableAssetOwnerName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="returnableAssetPackageDeposit" type="packaging_information:PackageDepositType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

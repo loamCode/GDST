@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gdsn_common="urn:gs1:gdsn:gdsn_common:xsd:3" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" xmlns:trade_item="urn:gs1:gdsn:trade_item:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gdsn:trade_item:xsd:3" version="3.1">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2015
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.1
+Date of creation: August 2015
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:gdsn:gdsn_common:xsd:3" schemaLocation="GdsnCommon.xsd"/>
+    <xsd:complexType name="AdditionalTradeItemClassificationPropertyType">
+        <xsd:sequence>
+            <xsd:element name="additionalTradeItemClassificationPropertyCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="70"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="additionalTradeItemClassificationPropertyDescription" type="shared_common:Description1000Type"/>
+            <xsd:element minOccurs="0" name="propertyAmount" type="shared_common:AmountType"/>
+            <xsd:element minOccurs="0" name="propertyCode" type="shared_common:CodeType"/>
+            <xsd:element minOccurs="0" name="propertyDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="propertyDescription" type="shared_common:Description5000Type"/>
+            <xsd:element minOccurs="0" name="propertyFloat" type="xsd:float"/>
+            <xsd:element minOccurs="0" name="propertyInteger" type="xsd:integer"/>
+            <xsd:element minOccurs="0" name="propertyMeasurement" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="propertyString" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AdditionalTradeItemClassificationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="additionalTradeItemClassificationSystemCode" type="gdsn_common:AdditionalTradeItemClassificationCodeListCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalTradeItemClassificationValue" type="trade_item:AdditionalTradeItemClassificationValueType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="AdditionalTradeItemClassificationValueType">
+        <xsd:sequence>
+            <xsd:element name="additionalTradeItemClassificationCodeValue">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="80"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="additionalTradeItemClassificationCodeDescription">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="additionalTradeItemClassificationVersion">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="35"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalTradeItemClassificationProperty" type="trade_item:AdditionalTradeItemClassificationPropertyType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ChildTradeItemType">
+        <xsd:complexContent>
+            <xsd:extension base="shared_common:TradeItemIdentificationType">
+                <xsd:sequence>
+                    <xsd:element name="quantityOfNextLowerLevelTradeItem" type="xsd:nonNegativeInteger"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="ComponentInformationType">
+        <xsd:sequence>
+            <xsd:element name="componentNumber" type="xsd:nonNegativeInteger"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="componentDescription" type="shared_common:Description1000Type"/>
+            <xsd:element minOccurs="0" name="componentIdentification" type="shared_common:IdentifierType"/>
+            <xsd:element minOccurs="0" name="contextIdentification" type="gdsn_common:TradeItemContextCodeType"/>
+            <xsd:element minOccurs="0" name="gpcCategoryCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="\d{8}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="extension" type="shared_common:ExtensionType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DisplayUnitInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="displayTypeCode" type="gdsn_common:DisplayTypeCodeType"/>
+            <xsd:element minOccurs="0" name="hasDisplayReadyPackaging" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="isTradeItemADisplayUnit" type="shared_common:NonBinaryLogicEnumerationType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GDSNTradeItemClassificationAttributeType">
+        <xsd:sequence>
+            <xsd:element name="gpcAttributeTypeCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="\d{8}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="gpcAttributeValueCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="\d{8}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="gpcAttributeTypeDefinition">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="700"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="gpcAttributeTypeName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="105"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="gpcAttributeValueName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="105"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GDSNTradeItemClassificationType">
+        <xsd:sequence>
+            <xsd:element name="gpcCategoryCode">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:pattern value="\d{8}"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="gpcCategoryDefinition">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="700"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="gpcCategoryName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="105"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="gDSNTradeItemClassificationAttribute" type="trade_item:GDSNTradeItemClassificationAttributeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalTradeItemClassification" type="trade_item:AdditionalTradeItemClassificationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="NextLowerLevelTradeItemInformationType">
+        <xsd:sequence>
+            <xsd:element name="quantityOfChildren" type="xsd:nonNegativeInteger"/>
+            <xsd:element name="totalQuantityOfNextLowerLevelTradeItem" type="xsd:nonNegativeInteger"/>
+            <xsd:element maxOccurs="unbounded" name="childTradeItem" type="trade_item:ChildTradeItemType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ReferencedTradeItemType">
+        <xsd:complexContent>
+            <xsd:extension base="shared_common:TradeItemIdentificationType">
+                <xsd:sequence>
+                    <xsd:element name="referencedTradeItemTypeCode" type="gdsn_common:ReferencedTradeItemTypeCodeType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:complexType name="TargetMarketCommunicationChannelType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="targetMarket" type="shared_common:TargetMarketType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="communicationChannel" type="shared_common:CommunicationChannelType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemComponentsType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="contentsDescription" type="shared_common:Description70Type"/>
+            <xsd:element minOccurs="0" name="nonMarkedTradeItemComponents" type="shared_common:Description70Type"/>
+            <xsd:element minOccurs="0" name="numberOfPiecesInSet" type="xsd:nonNegativeInteger"/>
+            <xsd:element minOccurs="0" name="totalNumberOfComponents" type="xsd:nonNegativeInteger"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="componentInformation" type="trade_item:ComponentInformationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemContactInformationType">
+        <xsd:sequence>
+            <xsd:element name="contactTypeCode" type="shared_common:ContactTypeCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalPartyIdentification" type="shared_common:AdditionalPartyIdentificationType"/>
+            <xsd:element minOccurs="0" name="availableTime" type="shared_common:Description70Type"/>
+            <xsd:element minOccurs="0" name="contactAddress">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="500"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="contactDescription" type="shared_common:Description200Type"/>
+            <xsd:element minOccurs="0" name="contactName">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:maxLength value="200"/>
+                        <xsd:minLength value="1"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="gln" type="shared_common:GLNType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="targetMarketCommunicationChannel" type="trade_item:TargetMarketCommunicationChannelType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="productionVariantDescription" type="shared_common:Description70Type"/>
+            <xsd:element minOccurs="0" name="productionVariantEffectiveDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="tradeItemComponents" type="trade_item:TradeItemComponentsType"/>
+            <xsd:element minOccurs="0" name="extension" type="shared_common:ExtensionType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemSynchronisationDatesType">
+        <xsd:sequence>
+            <xsd:element name="lastChangeDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="cancelledDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="communityVisibilityDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="discontinuedDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="effectiveDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="publicationDateTime" type="xsd:dateTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemType">
+        <xsd:complexContent>
+            <xsd:extension base="shared_common:TradeItemIdentificationType">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" name="contextIdentification" type="gdsn_common:TradeItemContextCodeType"/>
+                    <xsd:element minOccurs="0" name="isTradeItemABaseUnit" type="xsd:boolean"/>
+                    <xsd:element minOccurs="0" name="isTradeItemAConsumerUnit" type="xsd:boolean"/>
+                    <xsd:element minOccurs="0" name="isTradeItemADespatchUnit" type="xsd:boolean"/>
+                    <xsd:element minOccurs="0" name="isTradeItemAnInvoiceUnit" type="xsd:boolean"/>
+                    <xsd:element minOccurs="0" name="isTradeItemAnOrderableUnit" type="xsd:boolean"/>
+                    <xsd:element minOccurs="0" name="isTradeItemAService" type="xsd:boolean"/>
+                    <xsd:element minOccurs="0" name="isTradeItemNonphysical" type="xsd:boolean"/>
+                    <xsd:element minOccurs="0" name="isTradeItemRecalled" type="xsd:boolean"/>
+                    <xsd:element minOccurs="0" name="preliminaryItemStatusCode" type="gdsn_common:PreliminaryItemStatusCodeType"/>
+                    <xsd:element minOccurs="0" name="tradeItemUnitDescriptorCode" type="gdsn_common:TradeItemUnitDescriptorCodeType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="tradeItemTradeChannelCode" type="gdsn_common:TradeChannelCodeType"/>
+                    <xsd:element minOccurs="0" name="brandOwner" type="gdsn_common:PartyInRoleType"/>
+                    <xsd:element name="informationProviderOfTradeItem" type="gdsn_common:PartyInRoleType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="manufacturerOfTradeItem" type="gdsn_common:PartyInRoleType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="partyInRole" type="gdsn_common:PartyInRoleType"/>
+                    <xsd:element minOccurs="0" name="displayUnitInformation" type="trade_item:DisplayUnitInformationType"/>
+                    <xsd:element name="gdsnTradeItemClassification" type="trade_item:GDSNTradeItemClassificationType"/>
+                    <xsd:element minOccurs="0" name="nextLowerLevelTradeItemInformation" type="trade_item:NextLowerLevelTradeItemInformationType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="referencedTradeItem" type="trade_item:ReferencedTradeItemType"/>
+                    <xsd:element maxOccurs="unbounded" name="targetMarket" type="shared_common:TargetMarketType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="tradeItemContactInformation" type="trade_item:TradeItemContactInformationType"/>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="tradeItemInformation" type="trade_item:TradeItemInformationType"/>
+                    <xsd:element name="tradeItemSynchronisationDates" type="trade_item:TradeItemSynchronisationDatesType"/>
+                    <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

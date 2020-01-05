@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gdsn_common="urn:gs1:gdsn:gdsn_common:xsd:3" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" xmlns:trade_item_measurements="urn:gs1:gdsn:trade_item_measurements:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gdsn:trade_item_measurements:xsd:3" version="3.1">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2015
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.1
+Date of creation: August 2015
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:gdsn:gdsn_common:xsd:3" schemaLocation="GdsnCommon.xsd"/>
+    <xsd:element name="tradeItemMeasurementsModule" type="trade_item_measurements:TradeItemMeasurementsModuleType"/>
+    <xsd:complexType name="NestingDirectionCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="NestingTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="OrientationTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PegHoleTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="PegMeasurementsType">
+        <xsd:sequence>
+            <xsd:element name="pegHoleNumber" type="xsd:nonNegativeInteger"/>
+            <xsd:element minOccurs="0" name="pegHoleTypeCode" type="trade_item_measurements:PegHoleTypeCodeType"/>
+            <xsd:element name="pegHorizontal" type="shared_common:MeasurementType"/>
+            <xsd:element name="pegVertical" type="shared_common:MeasurementType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemMeasurementsModuleType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="tradeItemMeasurements" type="trade_item_measurements:TradeItemMeasurementsType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemMeasurementsType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="depth" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="diameter" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="height" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="inBoxCubeDimension" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="individualUnitMaximumSize" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="individualUnitMinimumSize" type="shared_common:MeasurementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="netContent" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="tradeItemCompositionDepth" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="tradeItemCompositionWidth" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="width" type="shared_common:MeasurementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="pegMeasurements" type="trade_item_measurements:PegMeasurementsType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="additionalTradeItemDimensions" type="gdsn_common:AdditionalTradeItemDimensionsType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="tradeItemNesting" type="trade_item_measurements:TradeItemNestingType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="tradeItemOrientation" type="trade_item_measurements:TradeItemOrientationType"/>
+            <xsd:element minOccurs="0" name="tradeItemWeight" type="trade_item_measurements:TradeItemWeightType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemNestingType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="nestingDirectionCode" type="trade_item_measurements:NestingDirectionCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="nestingIncrement" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="nestingTypeCode" type="trade_item_measurements:NestingTypeCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemOrientationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="orientationPreferenceSequence" type="xsd:nonNegativeInteger"/>
+            <xsd:element minOccurs="0" name="orientationTypeCode" type="trade_item_measurements:OrientationTypeCodeType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TradeItemWeightType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="drainedWeight" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="grossWeight" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="netWeight" type="shared_common:MeasurementType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

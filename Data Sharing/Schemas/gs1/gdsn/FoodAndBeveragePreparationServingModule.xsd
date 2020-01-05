@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:food_and_beverage_preparation_serving="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3" xmlns:gdsn_common="urn:gs1:gdsn:gdsn_common:xsd:3" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gdsn:food_and_beverage_preparation_serving:xsd:3" version="3.1">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2015
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.1
+Date of creation: August 2015
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:gdsn:gdsn_common:xsd:3" schemaLocation="GdsnCommon.xsd"/>
+    <xsd:element name="foodAndBeveragePreparationServingModule" type="food_and_beverage_preparation_serving:FoodAndBeveragePreparationServingModuleType"/>
+    <xsd:complexType name="FoodAndBeveragePreparationServingModuleType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="manufacturerPreparationTypeCode" type="gdsn_common:PreparationTypeCodeType"/>
+            <xsd:element minOccurs="0" name="servingQuantityInformation" type="food_and_beverage_preparation_serving:ServingQuantityInformationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="preparationServing" type="food_and_beverage_preparation_serving:PreparationServingType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="PreparationServingType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="convenienceLevelPercent" type="xsd:decimal"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="maximumOptimumConsumptionTemperature" type="shared_common:MeasurementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="minimumOptimumConsumptionTemperature" type="shared_common:MeasurementType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="preparationConsumptionPrecautions" type="shared_common:Description1000Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="preparationInstructions" type="shared_common:Description2500Type"/>
+            <xsd:element minOccurs="0" name="preparationTypeCode" type="gdsn_common:PreparationTypeCodeType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="servingSuggestion" type="shared_common:Description1000Type"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="productYieldInformation" type="food_and_beverage_preparation_serving:ProductYieldInformationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductYieldInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="productYield" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="productYieldTypeCode" type="food_and_beverage_preparation_serving:ProductYieldTypeCodeType"/>
+            <xsd:element minOccurs="0" name="productYieldVariationPercentage" type="xsd:decimal"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="ProductYieldTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+    <xsd:complexType name="ServingQuantityInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="maximumNumberOfSmallestUnitsPerPackage" type="xsd:integer"/>
+            <xsd:element minOccurs="0" name="numberOfServingsPerPackage" type="xsd:decimal"/>
+            <xsd:element minOccurs="0" name="numberOfServingsPerPackageMeasurementPrecisionCode" type="gdsn_common:MeasurementPrecisionCodeType"/>
+            <xsd:element minOccurs="0" name="numberOfSmallestUnitsPerPackage" type="xsd:integer"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

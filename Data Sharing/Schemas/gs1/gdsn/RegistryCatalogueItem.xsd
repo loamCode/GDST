@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gdsn_common="urn:gs1:gdsn:gdsn_common:xsd:3" xmlns:registry_catalogue_item="urn:gs1:gdsn:registry_catalogue_item:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gdsn:registry_catalogue_item:xsd:3" version="3.1">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2015
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.1
+Date of creation: August 2015
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:gdsn:gdsn_common:xsd:3" schemaLocation="GdsnCommon.xsd"/>
+    <xsd:element name="registryCatalogueItem" substitutionGroup="gdsn_common:document" type="registry_catalogue_item:RegistryCatalogueItemType"/>
+    <xsd:element name="registryCatalogueItemMessage" type="registry_catalogue_item:RegistryCatalogueItemMessageType"/>
+    <xsd:complexType name="CatalogueItemDatesType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="cancelDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="deletionDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="discontinuedDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="lastChangedDateTime" type="xsd:dateTime"/>
+            <xsd:element minOccurs="0" name="registrationDateTime" type="xsd:dateTime"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RegistryCatalogueItemMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="unbounded" name="transaction" type="gdsn_common:TransactionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="RegistryCatalogueItemType">
+        <xsd:complexContent>
+            <xsd:extension base="shared_common:DocumentType">
+                <xsd:sequence>
+                    <xsd:element name="registryCatalogueItemIdentification" type="shared_common:EntityIdentificationType"/>
+                    <xsd:element maxOccurs="unbounded" name="gpcCategoryCode">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:pattern value="\d{8}"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="sourceDataPool" type="shared_common:GLNType"/>
+                    <xsd:element name="registryCatalogueItemStateCode" type="registry_catalogue_item:RegistryCatalogueItemStateEnumerationType"/>
+                    <xsd:element name="catalogueItemReference" type="gdsn_common:CatalogueItemReferenceType"/>
+                    <xsd:element minOccurs="0" name="catalogueItemDates" type="registry_catalogue_item:CatalogueItemDatesType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+    <xsd:simpleType name="RegistryCatalogueItemStateEnumerationType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CANCELED"/>
+            <xsd:enumeration value="DISCONTINUED"/>
+            <xsd:enumeration value="IN_PROGRESS"/>
+            <xsd:enumeration value="REGISTERED"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

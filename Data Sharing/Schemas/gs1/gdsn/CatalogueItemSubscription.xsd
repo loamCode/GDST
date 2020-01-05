@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:catalogue_item_subscription="urn:gs1:gdsn:catalogue_item_subscription:xsd:3" xmlns:gdsn_common="urn:gs1:gdsn:gdsn_common:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gdsn:catalogue_item_subscription:xsd:3" version="3.1">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2015
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.1
+Date of creation: August 2015
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:gdsn:gdsn_common:xsd:3" schemaLocation="GdsnCommon.xsd"/>
+    <xsd:element name="catalogueItemSubscription" substitutionGroup="gdsn_common:document" type="catalogue_item_subscription:CatalogueItemSubscriptionType"/>
+    <xsd:element name="catalogueItemSubscriptionMessage" type="catalogue_item_subscription:CatalogueItemSubscriptionMessageType"/>
+    <xsd:complexType name="CatalogueItemSubscriptionMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="unbounded" name="transaction" type="gdsn_common:TransactionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CatalogueItemSubscriptionType">
+        <xsd:complexContent>
+            <xsd:extension base="shared_common:DocumentType">
+                <xsd:sequence>
+                    <xsd:element name="catalogueItemSubscriptionIdentification" type="shared_common:EntityIdentificationType"/>
+                    <xsd:element name="dataRecipient" type="shared_common:GLNType"/>
+                    <xsd:element minOccurs="0" name="dataSource" type="shared_common:GLNType"/>
+                    <xsd:element minOccurs="0" name="gpcCategoryCode">
+                        <xsd:simpleType>
+                            <xsd:restriction base="xsd:string">
+                                <xsd:pattern value="\d{8}"/>
+                            </xsd:restriction>
+                        </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element minOccurs="0" name="gtin" type="shared_common:GTINType"/>
+                    <xsd:element minOccurs="0" name="recipientDataPool" type="shared_common:GLNType"/>
+                    <xsd:element minOccurs="0" name="targetMarket" type="shared_common:TargetMarketType"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+</xsd:schema>

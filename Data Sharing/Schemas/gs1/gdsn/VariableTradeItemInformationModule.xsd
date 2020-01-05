@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gdsn_common="urn:gs1:gdsn:gdsn_common:xsd:3" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" xmlns:variable_trade_item_information="urn:gs1:gdsn:variable_trade_item_information:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gdsn:variable_trade_item_information:xsd:3" version="3.1">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2015
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.1
+Date of creation: August 2015
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:gdsn:gdsn_common:xsd:3" schemaLocation="GdsnCommon.xsd"/>
+    <xsd:element name="variableTradeItemInformationModule" type="variable_trade_item_information:VariableTradeItemInformationModuleType"/>
+    <xsd:complexType name="VariableTradeItemInformationModuleType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="variableTradeItemInformation" type="variable_trade_item_information:VariableTradeItemInformationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="VariableTradeItemInformationType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="isTradeItemAVariableUnit" type="xsd:boolean"/>
+            <xsd:element minOccurs="0" name="variableTradeItemTypeCode" type="variable_trade_item_information:VariableTradeItemTypeCodeType"/>
+            <xsd:element minOccurs="0" name="variableWeightAllowableDeviationPercentage" type="xsd:decimal"/>
+            <xsd:element minOccurs="0" name="variableWeightRangeMaximum" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="variableWeightRangeMinimum" type="shared_common:MeasurementType"/>
+            <xsd:element minOccurs="0" name="avpList" type="gdsn_common:GS1_AttributeValuePairListType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="VariableTradeItemTypeCodeType">
+        <xsd:simpleContent>
+            <xsd:extension base="shared_common:GS1CodeType"/>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:schema>

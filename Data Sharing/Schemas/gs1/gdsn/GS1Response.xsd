@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:gdsn_common="urn:gs1:gdsn:gdsn_common:xsd:3" xmlns:gs1_response="urn:gs1:gdsn:gs1_response:xsd:3" xmlns:sh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" xmlns:shared_common="urn:gs1:shared:shared_common:xsd:3" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:gs1:gdsn:gs1_response:xsd:3" version="3.1">
+    <xsd:annotation>
+        <xsd:documentation><![CDATA[---------------------------
+© Copyright GS1, 2015
+
+GS1 is providing this XML Schema Definition file and resultant XML file as a service to interested industries.
+This XML Schema Definition file and resultant XML file were developed through a consensus process of interested parties.
+
+Although efforts have been made to ensure that the XML Schema Definition file and resultant XML file are correct, reliable, and technically
+accurate,  GS1 makes NO WARRANTY, EXPRESS OR IMPLIED, THAT THIS XML Schema Definition file and resultant XML file ARE
+CORRECT, WILL NOT REQUIRE MODIFICATION AS EXPERIENCE AND TECHNOLOGICAL ADVANCES DICTATE, OR WILL BE SUITABLE FOR
+ANY PURPOSE OR WORKABLE IN ANY APPLICATION, OR OTHERWISE.  Use of the XML Schema Definition file and resultant XML
+file are with the understanding that GS1 has no liability for any claim to the contrary, or for any damage or loss of any kind or nature.
+
+Version Information:
+Version Number: 3.1
+Date of creation: August 2015
+
+The schema and subsequent updates will be provided on the GS1 websites.
+---------------------------
+]]></xsd:documentation>
+    </xsd:annotation>
+    <xsd:import namespace="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaLocation="../../sbdh/StandardBusinessDocumentHeader.xsd"/>
+    <xsd:import namespace="urn:gs1:shared:shared_common:xsd:3" schemaLocation="../shared/SharedCommon.xsd"/>
+    <xsd:import namespace="urn:gs1:gdsn:gdsn_common:xsd:3" schemaLocation="GdsnCommon.xsd"/>
+    <xsd:element name="gS1ResponseMessage" type="gs1_response:GS1ResponseMessageType"/>
+    <xsd:complexType name="AttributeExceptionType">
+        <xsd:sequence>
+            <xsd:element name="attributeName" type="xsd:string"/>
+            <xsd:element name="attributeValue" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="xPath" type="xsd:string"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="gS1Error" type="gs1_response:GS1ErrorType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="CommandExceptionType">
+        <xsd:sequence>
+            <xsd:element name="entityIdentification" type="shared_common:EntityIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="gS1Error" type="gs1_response:GS1ErrorType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="documentException" type="gs1_response:DocumentExceptionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DocumentExceptionType">
+        <xsd:sequence>
+            <xsd:element name="entityIdentification" type="shared_common:EntityIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="gS1Error" type="gs1_response:GS1ErrorType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="attributeException" type="gs1_response:AttributeExceptionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GS1ErrorType">
+        <xsd:sequence>
+            <xsd:element name="errorCode" type="xsd:string"/>
+            <xsd:element name="errorDateTime" type="xsd:dateTime"/>
+            <xsd:element name="errorDescription" type="shared_common:String1000Type"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GS1ExceptionType">
+        <xsd:sequence>
+            <xsd:element minOccurs="0" name="exceptionMessageTypeCode" type="gdsn_common:ExceptionMessageTypeCodeType"/>
+            <xsd:choice>
+                <xsd:element name="messageException" type="gs1_response:MessageExceptionType"/>
+                <xsd:element name="transactionException" type="gs1_response:TransactionExceptionType"/>
+            </xsd:choice>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GS1ResponseMessageType">
+        <xsd:sequence>
+            <xsd:element ref="sh:StandardBusinessDocumentHeader"/>
+            <xsd:element maxOccurs="unbounded" name="gS1Response" type="gs1_response:GS1ResponseType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="GS1ResponseType">
+        <xsd:sequence>
+            <xsd:element name="originatingMessageIdentifier" type="shared_common:EntityIdentificationType"/>
+            <xsd:element name="receiver" type="shared_common:GLNType"/>
+            <xsd:element name="sender" type="shared_common:GLNType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="transactionResponse" type="gs1_response:TransactionResponseType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="gS1Exception" type="gs1_response:GS1ExceptionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="MessageExceptionType">
+        <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" name="gS1Error" type="gs1_response:GS1ErrorType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TransactionExceptionType">
+        <xsd:sequence>
+            <xsd:element name="entityIdentification" type="shared_common:EntityIdentificationType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="gS1Error" type="gs1_response:GS1ErrorType"/>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="commandException" type="gs1_response:CommandExceptionType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="TransactionResponseType">
+        <xsd:sequence>
+            <xsd:element name="transactionIdentifier" type="shared_common:EntityIdentificationType"/>
+            <xsd:element name="responseStatusCode" type="shared_common:ResponseStatusEnumerationType"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>
