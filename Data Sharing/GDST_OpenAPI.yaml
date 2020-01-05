@@ -46,7 +46,7 @@ paths:
               schema: 
                 type: 'string'
                 externalDocs:
-                  description: 'The EPCIS XML Schema to be used for the response content.'
+                  description: 'EPCIS Master Data Document'
                   url: 'https://raw.githubusercontent.com/IFTGFTC/GDST/master/Data%20Sharing/Schemas/EPCglobal-epcis-masterdata-1_2.xsd'
         '400':
           description: Invalid GTIN.
@@ -78,7 +78,7 @@ paths:
               schema:
                 type: 'string'
                 externalDocs:
-                  description: 'The XML Schema to be used for the response content.'
+                  description: 'EPCIS Master Data Document'
                   url: 'https://raw.githubusercontent.com/IFTGFTC/GDST/master/Data%20Sharing/Schemas/EPCglobal-epcis-masterdata-1_2.xsd'
         '400':
           description: GLN is not a valid format.
@@ -110,7 +110,7 @@ paths:
               schema:
                 type: "string"
                 externalDocs:
-                  description: 'EPCIS Message Format'
+                  description: 'EPCIS Document'
                   url: 'https://raw.githubusercontent.com/IFTGFTC/GDST/master/Data%20Sharing/Schemas/EPCglobal-epcis-1_2.xsd'
         '400':
           description: GLN is not a valid format.
@@ -145,5 +145,5 @@ paths:
               schema:
                 type: "string"
                 externalDocs:
-                  description: 'EPCIS format'
+                  description: 'EPCIS Document'
                   url: 'https://raw.githubusercontent.com/IFTGFTC/GDST/master/Data%20Sharing/Schemas/EPCglobal-epcis-1_2.xsd'
