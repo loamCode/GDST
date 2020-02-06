@@ -1,4 +1,4 @@
-The GDST anticipates that the standard documented in this packet of materials will not address every supply chain contingency, certification scheme, or regulatory requirement. Because of the extensibility of EPCIS, there is the potential to have “too much” flexibility, wherein solution providers and seafood companies represent this information in divergent methods. To have a concerted approach and standard reference, the GDST has created a GitHub repository to extend documentation to new or non-normative situations, such as:
+The GDST anticipates that the standard documented in the packet of materials will not address every supply chain contingency, certification scheme, or regulatory requirement. Because of the extensibility of EPCIS, there is the potential to have “too much” flexibility, wherein solution providers and seafood companies represent this information in divergent methods. To have a concerted approach and standard reference, the GDST has created this GitHub repository to extend documentation to new or non-normative situations, such as:
 * Specific documentation to common certifications
   * E.g. MSC/ASC and Fair Trade.
 * Regulatory guidance
