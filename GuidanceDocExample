@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!-- Updated April 10, 2019 Andrew Kennedy, akennedy@ift.org mobile +1.919.280.1024-->
+<!-- Wild Caught Tuna Processing Example for GDST Solution Provider Interoperability Pilot 2019-->
+<!-- VESSEL: BAE FU 103 -->
+<!-- VESSEL INFO: https://www.marinetraffic.com/en/ais/details/ships/shipid:652762/mmsi:416043800/imo:8748490/vessel:BAE_FU_NO_103 -->
+<!-- FISHING MAP: http://globalfishingwatch.org/map/workspace/udw-v2-96d90b78-a4ee-4335-9eb4-4256fa3e35c4 -->
+<!-- Scenario 1 - assumes master data is shared ahead of time, one trip, one catch, one offload -->
+<epcis:EPCISDocument xmlns:epcis="urn:epcglobal:epcis:xsd:1" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:sbdh="http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader" schemaVersion="0" creationDate="2001-12-17T09:30:47Z" xsi:schemaLocation="urn:epcglobal:epcis:xsd:1  http://www.gs1si.org/BMS/epcis/1_2/EPCglobal-epcis-1_2.xsd" 
+    xmlns:cbvmda="urn:epcglobal:cbv:mda"
+    xmlns:gdst="https://traceability-dialogue.org/epcis">
+    <EPCISHeader>
+        <sbdh:StandardBusinessDocumentHeader>
+            <sbdh:HeaderVersion>1.0</sbdh:HeaderVersion>
+            <sbdh:Sender>
+                <sbdh:Identifier>urn:epc:id:pgln:006878.085014</sbdh:Identifier> <!-- Sending software provider: -->
+                <sbdh:ContactInformation>
+                    <sbdh:Contact>John Doe</sbdh:Contact>
+                    <sbdh:EmailAddress>john@ecatch.com</sbdh:EmailAddress>
+                </sbdh:ContactInformation>
+            </sbdh:Sender>
+            <sbdh:Receiver>
+                <sbdh:Identifier>urn:epc:id:pgln:0637196.000004</sbdh:Identifier> <!-- Receiving software provider: -->
+                <sbdh:ContactInformation>
+                    <sbdh:Contact>Amy Adams</sbdh:Contact>
+                    <sbdh:EmailAddress>amy@traceco.com</sbdh:EmailAddress>
+                </sbdh:ContactInformation>
+            </sbdh:Receiver>
+            <sbdh:DocumentIdentification>
+                <sbdh:Standard>GS1</sbdh:Standard>
+                <sbdh:TypeVersion>3.0</sbdh:TypeVersion>
+                <sbdh:InstanceIdentifier>9999</sbdh:InstanceIdentifier>
+                <sbdh:Type>Seafood Traceability</sbdh:Type>
+                <sbdh:MultipleType>false</sbdh:MultipleType>
+                <sbdh:CreationDateAndTime>2016-12-15T11:11:52+08:00</sbdh:CreationDateAndTime>
+            </sbdh:DocumentIdentification>
+        </sbdh:StandardBusinessDocumentHeader>
+        <extension>
+            <EPCISMasterData>
+                <VocabularyList> 
+                    <Vocabulary type="urn:epcglobal:epcis:vtype:EPCClass">
+                        <VocabularyElementList>
+                            <VocabularyElement id="urn:epc:idpat:sgtin:0048000.363267.*"> <!-- Assigned GTIN for Whole Wild Caught Yellowfin Tuna -->
+                                <attribute id="urn:epcglobal:cbv:mda#informationProvider">urn:epc:id:pgln:0048000.000001</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#descriptionShort">Yellowfin Tuna</attribute> <!-- Optional -->
+                                <attribute id="urn:epcglobal:cbv:mda#speciesForFisheryStatisticsPurposesName">Thunnus albacares</attribute> <!-- Optional -->
+                                <attribute id="urn:epcglobal:cbv:mda#speciesForFisheryStatisticsPurposesCode">YFT</attribute> <!-- SIMP: Scientific Species Code -->
+                                <attribute id="urn:epcglobal:cbv:mda#tradeItemConditionCode">WHL</attribute> <!-- SIMP: Processing Description, "NRD" -->
+                            </VocabularyElement>
+                            <VocabularyElement id="urn:epc:idpat:sgtin:0048000.263267.*"> <!-- Yellowfin Loins -->
+                                <attribute id="urn:epcglobal:cbv:mda#informationProvider">urn:epc:id:pgln:0048000.000001</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#speciesForFisheriesStatisticsPurposesCode">YFT</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#speciesForFisheryStatisticsPurposesName">Thunnus albacares</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#descriptionShort">Yellowfin Tuna Fancy Loins</attribute> 
+                            </VocabularyElement>
+                            <VocabularyElement id="urn:epc:idpat:sgtin:0048000.163267.*"> <!-- Case of Canned Tuna -->
+                                <attribute id="urn:epcglobal:cbv:mda#informationProvider">urn:epc:id:pgln:0048000.000001</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#descriptionShort">CANNED TUNA 6/6/7</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#speciesForFisheriesStatisticsPurposesCode">YFT</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#speciesForFisheryStatisticsPurposesName">Thunnus albacares</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#preservationTechniqueCode">CANNING</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#grossWeight"><measurement measurementUnitCode="KGM">2.0</measurement></attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#additionalTradeItemIdentification">4800063267</attribute>
+                            </VocabularyElement>
+                        </VocabularyElementList>
+                    </Vocabulary>
+                    <Vocabulary type="urn:epcglobal:epcis:vtype:Location">
+                        <VocabularyElementList>
+                            <VocabularyElement id="urn:epc:id:sgln:0048000.00001.0"> <!-- SIMP Buyer -->
+                                <attribute id="urn:epcglobal:cbv:mda#informationProvider">urn:epc:id:pgln:0048000.000001</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#name">Taiwan Seafood Processor</attribute> <!--  Loin Processor -->
+                                <attribute id="urn:epcglobal:cbv:mda#partyIDTypeCode">DUNS</attribute> <!-- SIMP Entity Role Code CE, Certifying Entity-->
+                                <attribute id="urn:epcglobal:cbv:mda#additionalPartyID">00-000-0000</attribute> <!-- SIMP DUNS number -->
+                                <attribute id="urn:epcglobal:cbv:mda#streetAddressOne">2 Zhongshan Road</attribute> <!-- SIMP Address -->
+                                <attribute id="urn:epcglobal:cbv:mda#streetAddressTwo"></attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#city">Budai Township</attribute> <!-- SIMP Address -->
+                                <attribute id="urn:epcglobal:cbv:mda#state">Chiayi County</attribute> <!-- SIMP Address -->
+                                <attribute id="urn:epcglobal:cbv:mda#postalCode"></attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#countryCode">TW</attribute> <!-- SIMP Address -->
+                                <attribute id="urn:epcglobal:cbv:mda#latitude">23.380809</attribute> <!-- SIMP Address -->
+                                <attribute id="urn:epcglobal:cbv:mda#longitude">120.155454</attribute> <!-- SIMP Address -->
+                                <attribute id="unr:epcglobal:cbv:mda#contact">Joe Smith</attribute> <!-- SIMP Ext. Buyer (BY) -->
+                                <attribute id="urn:epcglobal:cbv:mda#telephone">+1.999-999-9999</attribute> <!-- SIMP Extension -->
+                                <attribute id="urn:epcglobal:cbv:mda#email">joe@triunionsf.com</attribute> <!-- SIMP Extension -->
+                            </VocabularyElement>
+                            <VocabularyElement id="urn:epc:id:sgln:0049000.00002.0">
+                                <attribute id="urn:epcglobal:cbv:mda#informationProvider">urn:epc:id:pgln:0049000.000001</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#name">US Canning Plant</attribute> <!--  Canning Facility -->
+                                <attribute id="urn:epcglobal:cbv:mda#streetAddressOne">129 Commerce Dr</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#streetAddressTwo"></attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#city">Lyons</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#state">GA</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#postalCode">30436</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#countryCode">US</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#latitude">32.241756</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#longitude">-82330249</attribute>
+                            </VocabularyElement>
+                            <VocabularyElement id="urn:epc:id:sgln:0050000.00003.0">
+                                <attribute id="urn:epcglobal:cbv:mda#informationProvider">urn:epc:id:pgln:0050000.000001</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#name">Custom Goods Whs, Carson</attribute> <!--  Custom Warehouse -->
+                                <attribute id="urn:epcglobal:cbv:mda#streetAddressOne">12200 Arrow Route</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#streetAddressTwo"></attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#city">Rancho Cucamonga</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#state">CA</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#postalCode">91739</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#countryCode">US</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#latitude">34.101415</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#longitude">-117.536570</attribute>
+                            </VocabularyElement>
+                            <VocabularyElement id="urn:epc:id:sgln:0047000.00004.0">
+                                <attribute id="urn:epcglobal:cbv:mda#informationProvider">urn:epc:id:pgln:0047000.000001</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#name">BAE FU 103</attribute> <!--  Vessel Name for Display -->
+                                <attribute id="urn:epcglobal:cbv:mda#vesselName">BAE FU 103</attribute> <!--  SIMP: Harvesting Vessel VNM-->
+                                <attribute id="urn:epcglobal:cbv:mda#vesselID">IMO.9517276</attribute> <!-- SIMP: Harvesting Vessel IMO -->
+                                <attribute id="urn:epcglobal:cbv:mda#vesselFlagState">TW</attribute> <!-- SIMP: Harvest Vessel VCR -->
+                                <!-- Note: vessel certifications here -->
+                            </VocabularyElement>
+                            <VocabularyElement id="urn:epc:id:sgln:0048000.00005.0"> <!--  Port of Kaosiung -->
+                                <attribute id="urn:epcglobal:cbv:mda#informationProvider">urn:epc:id:pgln:0048000.000001</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#unloadingPort">"TW KHH"</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#name">Port of Kaosiung</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#streetAddressOne">No. 62 Linhai 2nd Rd</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#streetAddressTwo">Gushan District</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#city">Kaohsiung</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#state"></attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#postalCode"></attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#countryCode">TW</attribute> <!-- SIMP: Country Code -->
+                                <attribute id="urn:epcglobal:cbv:mda#latitude">22.58425</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#longitude">120.31815</attribute>
+                                <attribute id="unr:epcglobal:cbv:mda#contact">Joe Smith</attribute> <!-- SIMP Ext. Buyer (Buyer, BY) -->
+                                <attribute id="urn:epcglobal:cbv:mda#telephone">+1.999-999-9999</attribute> <!-- SIMP Extension -->
+                                <attribute id="urn:epcglobal:cbv:mda#email">joe@gmail.com</attribute> <!-- SIMP Extension -->
+                            </VocabularyElement>
+                            <VocabularyElement id="urn:epc:id:sgln:0099000.00004.0">
+                                <attribute id="urn:epcglobal:cbv:mda#informationProvider">urn:epc:id:pgln:0099000.000001</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#name">Big Retail DC</attribute> <!--  Retail Distribution Center -->
+                                <attribute id="urn:epcglobal:cbv:mda#streetAddressOne">7133 Koll Center Pkwy</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#streetAddressTwo"></attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#city">Pleasanton</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#state">CA</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#postalCode">94566</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#countryCode">US</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#latitude">37.661761</attribute>
+                                <attribute id="urn:epcglobal:cbv:mda#longitude">-121.898623</attribute>
+                            </VocabularyElement>
+                        </VocabularyElementList>
+                    </Vocabulary>           
+                </VocabularyList>
+            </EPCISMasterData>
+        </extension>
+    </EPCISHeader>
+      <EPCISBody>
+        <EventList>
+            <ObjectEvent> <!-- V1 Fishing/Catch Event (represents one catch, if multiple creat multiple events and IDs) -->
+                <eventTime>2016-12-01T08:09:23.582+11:00</eventTime> <!-- Reflects when the catch event is recorded, not actually when fish are caught -->
+                <eventTimeZoneOffset>+11:00</eventTimeZoneOffset>
+                <epcList>
+                </epcList>
+                <action>ADD</action> <!-- Action ADD indicates this is the creation point of the specific lot of fish -->
+                <bizStep>urn:epcglobal:cbv:bizstep:commissioning</bizStep> <!-- First time this lot is created. use "Creating_Class_Instance" to add more to lot -->
+                <disposition>urn:epcglobal:cbv:disp:active</disposition> <!-- This indicates the lot is active. -->
+                <readPoint>
+                    <id>geo:0.886256,148.445297</id> <!-- Point where catch event was recorded, not necessarily where fish was caught-->
+                </readPoint>
+                <bizLocation>
+                    <id>urn:epc:id:sgln:0047000.00004.0</id> <!-- SIMP Attributes are tied to GLN of Vessel in Master Data Above-->
+                </bizLocation>
+                <extension>              
+                    <quantityList>
+                        <quantityElement> <!--  REQUIRED FOR SIMP -->
+                            <epcClass>urn:epc:class:lgtin:0048000.363267.YFT123</epcClass> <!-- Whole Yellowfin tuna -->
+                            <!-- SIMP: Scientific Species Code, Processing Description are pre-shared as master data above -->
+                            <quantity>5714</quantity> <!-- #11 GDST KDE Weight/Commodity -->
+                            <uom>KGM</uom> <!-- SIMP UOM is KG -->
+                        </quantityElement>
+                    </quantityList>
+                    <ilmd>
+                        <cbvmda:vesselCatchInformationList> <!--  Attach GDST KDEs to unique Catch Event -->
+                            <vesselCatchInformation>
+                                <catchArea>FAO.71</catchArea> <!-- SIMP Equivalent = "WP" -->
+                                <economicZone>XIN</economicZone> <!-- SIMP Equivalent = "ZZ" -->
+                                <fishingGearTypeCode>PS</fishingGearTypeCode>  <!-- SIMP: Processing Type Code (FAO Gear Type Code List http://www.fao.org/3/a-bt987e.pdf)-->
+                            </vesselCatchInformation>
+                        </cbvmda:vesselCatchInformationList>
+                        <cbvmda:productionMethodCode>MARINE_FISHERY</cbvmda:productionMethodCode> <!-- SIMP Source Type Code "HCF" -->
+                        <cbvmda:harvestStartDate>2016-11-10</cbvmda:harvestStartDate> <!-- #8 & 9 GDST KDE Date of Capture -->
+                        <cbvmda:harvestEndDate>2016-12-01</cbvmda:harvestEndDate> <!-- #8 & 9 GDST KDE Date of Capture -->
+                        <cbvmda:certificationList> <!-- LOCAL LICENSURE -->
+                            <certification>
+                                <certificationStandard>NM6</certificationStandard> <!-- SIMP: LPCO Type -->
+                                <certificationAgency>DFO</certificationAgency> <!-- SIMP: LPCO Type, Agency-->
+                                <certificationValue>SIMP.LPCO.2</certificationValue> <!-- SIMP: LPCO Transaction Type -->
+                                <certificationIdentification>10161781</certificationIdentification> <!-- SIMP: LPCO Permit Number -->
+                            </certification>
+                        </cbvmda:certificationList>
+                    </ilmd>
+                </extension>
+
+                <!-- EXTENSION -->
+                <gdst:productOwner>urn:epc:id:pgln:0047000.00001</gdst:productOwner> <!-- PGLN of company who owned products during event. -->
+                <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+            </ObjectEvent>
+            <ObjectEvent> <!-- V2 Landing and offloading fish at port SIMP First Sale to Taiwan Loin Processor -->
+                <eventTime>2016-12-15T10:53:00.125+08:00</eventTime> <!--  SIMP  -->
+                <eventTimeZoneOffset>+08:00</eventTimeZoneOffset>
+                <epcList>
+                </epcList>
+                <action>OBSERVE</action>
+                <bizStep>urn:epcglobal:cbv:bizstep:unloading</bizStep> <!-- Unloading Fish at Port -->
+                <disposition>urn:epcglobal:cbv:disp:in_progress</disposition>
+                <!-- GEO LOCATION OF PORTS IS LISTED IN: https://www.marinetraffic.com -->
+                <readPoint>
+                    <id>geo:22.58425,120.31815</id> <!-- Location where event is actually captured -->
+                </readPoint>
+                <bizLocation>
+                    <id>urn:epc:id:sgln:0048000.00005.0</id> <!-- GLN of Port of KAOHSIUNG, Taiwan, TWKHH -->
+                </bizLocation>
+                <bizTransactionList> <!-- Transaction Reference for Taiwan Tuna Loin Processor -->
+                    <bizTransaction type="urn:epcglobal:cbv:btt:bol">9992332</bizTransaction> <!-- Note: Hail In Number is not exactly a BOL-->
+                    <bizTransaction type="urn:gdst:btt:cert">888888</bizTransaction> <!-- Third part certificate -->
+                </bizTransactionList>
+                <extension>              
+                    <quantityList>
+                        <quantityElement> <!--  REQUIRED FOR SIMP -->
+                            <epcClass>urn:epc:class:lgtin:0048000.363267.YFT123</epcClass> <!-- Whole Yellowfin tuna -->
+                            <!-- SIMP: Scientific Species Code, Processing Description are pre-shared as master data above -->
+                            <quantity>5714</quantity> <!-- #11 GDST KDE Weight/Commodity -->
+                            <uom>KGM</uom> <!-- SIMP UOM is KG -->
+                        </quantityElement>
+                    </quantityList>
+                    <sourceList> <!-- Transfer from Vessel Owner to Loin Processor (Link to MSC CoC, Record of First Sale for SIMP) -->
+                        <source type="urn:epcglobal:cbv:sdt:owning_party">urn:epc:id:pgln:0047000.00001.0</source> <!-- Vessel -->
+                    </sourceList>
+                    <destinationList>
+                        <destination type="urn:epcglobal:cbv:sdt:owning_party">urn:epc:id:pgln:0048000.00001.0</destination> <!-- Taiwan Loin Processor -->
+                    </destinationList>
+                </extension>
+
+                <!-- EXTENSION -->
+                <gdst:productOwner>urn:epc:id:pgln:0047000.00001</gdst:productOwner> <!-- PGLN of company who owned products when event occurred. In the case of a transaction, it is the seller. -->
+                <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+            </ObjectEvent>
+            <ObjectEvent> <!-- V3 Ship to Taiwan Tuna Loin Processor Facility -->
+                <eventTime>2016-12-24T10:14:45.125+07:00</eventTime>
+                <eventTimeZoneOffset>+07:00</eventTimeZoneOffset>
+                <epcList></epcList>
+                <action>OBSERVE</action>
+                <bizStep>urn:epcglobal:cbv:bizstep:shipping</bizStep>
+                <disposition>urn:epcglobal:cbv:disp:in_transit</disposition>
+                <readPoint>
+                    <id>geo:22.58425,120.31815</id> <!-- Location where event is actually captured -->
+                </readPoint>
+                <bizLocation>
+                    <id>urn:epc:id:sgln:0048000.00005.0</id> <!-- GLN of Port of KAOHSIUNG, Taiwan, TWKHH -->
+                </bizLocation>
+                <bizTransactionList> <!-- Transaction Reference for Taiwan Tuna Loin Processor -->
+                    <bizTransaction type="urn:epcglobal:cbv:btt:po">500127042</bizTransaction> <!-- Buyer PO number -->
+                    <bizTransaction type="urn:epcglobal:cbv:btt:inv">9992332</bizTransaction> <!-- Vessel Hail In Number -->
+                </bizTransactionList>
+                <extension>
+                    <quantityList>
+                        <quantityElement> 
+                            <epcClass>urn:epc:class:lgtin:0048000.363267.YFT123</epcClass> <!-- Unique ID that links Landing/Offload to Catch/Fishing -->
+                            <quantity>5714</quantity>
+                            <uom>KGM</uom>
+                        </quantityElement>
+                    </quantityList>
+                    <sourceList>
+                        <source type="urn:epcglobal:cbv:sdt:location">urn:epc:id:sgln:0048000.00005.0</source> <!-- Port -->
+                    </sourceList>
+                    <destinationList>
+                        <destination type="urn:epcglobal:cbv:sdt:location">urn:epc:id:sgln:0048000.00001.0</destination> <!-- Taiwan Loin Processor -->
+                    </destinationList>
+                </extension>
+
+                <!-- EXTENSION -->
+                <gdst:productOwner>urn:epc:id:pgln:0048000.00001</gdst:productOwner> <!-- PGLN of company who owned products when event occurred. In the case of a transaction, it is the seller. -->
+                <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+            </ObjectEvent>
+            <ObjectEvent> <!-- V4 Receipt at Taiwan Tuna Loin Processor -->
+                <eventTime>2016-12-25T10:14:45.125+07:00</eventTime>
+                <eventTimeZoneOffset>+07:00</eventTimeZoneOffset>
+                <epcList></epcList>
+                <action>OBSERVE</action>
+                <bizStep>urn:epcglobal:cbv:bizstep:receiving</bizStep>
+                <disposition>urn:epcglobal:cbv:disp:in_transit</disposition>
+                <readPoint>
+                    <id>geo:22.355092,120.163097</id> <!-- Actual Location where event is captured -->
+                </readPoint>
+                <bizLocation>
+                    <id>urn:epc:id:sgln:0048000.00001.0</id> <!-- Loin Processor -->
+                </bizLocation>
+                <bizTransactionList> <!-- Transaction Reference for Taiwan Tuna Loin Processor -->
+                    <bizTransaction type="urn:epcglobal:cbv:btt:po">500127042</bizTransaction>
+                    <bizTransaction type="urn:epcglobal:cbv:btt:inv">9992332</bizTransaction>
+                </bizTransactionList>
+                <extension>
+                    <quantityList>
+                        <quantityElement> 
+                            <epcClass>urn:epc:class:lgtin:0048000.363267.YFT123</epcClass> <!-- Unique ID that links Landing/Offload to Catch/Fishing -->
+                            <quantity>5714</quantity>
+                            <uom>KGM</uom>
+                        </quantityElement>
+                    </quantityList>
+                </extension>
+
+                <!-- EXTENSION -->
+                <gdst:productOwner>urn:ecatch.com:location:loc:Fishco.Taiwan</gdst:productOwner> <!-- PGLN of company who owned products when event occurred. In the case of a transaction, it is the seller. -->
+                <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+            </ObjectEvent>
+            <extension> <!-- V5 Process Into Loins (Vessel BAE FU 103)-->
+                <TransformationEvent>
+                    <eventTime>2016-12-26T11:04:45.125+07:00</eventTime>
+                    <eventTimeZoneOffset>+07:00</eventTimeZoneOffset>
+                    <inputQuantityList>
+                        <quantityElement> 
+                            <epcClass>urn:epc:class:lgtin:0048000.363267.YFT123</epcClass>
+                            <quantity>5714</quantity>
+                            <uom>KGM</uom>
+                        </quantityElement>
+                    </inputQuantityList>
+                    <outputQuantityList>
+                        <quantityElement> <!-- GS1 GTIN + Lot: Yellowfin Tuna Loins -->
+                            <epcClass>urn:epc:class:lgtin:0048000.263267.YF17B25DHH</epcClass> 
+                            <quantity>1152</quantity>
+                            <uom>KGM</uom>
+                        </quantityElement>
+                    </outputQuantityList> 
+                    <bizStep>urn:epcglobal:cbv:bizstep:commissioning</bizStep>
+                    <disposition>urn:epcglobal:cbv:disp:active</disposition>
+                    <readPoint>
+                        <id>geo:22.355092,120.163097</id> <!-- Actual Location where event is captured -->
+                    </readPoint>
+                    <bizLocation>
+                        <id>urn:epc:id:sgln:0048000.00001.0</id> <!-- Loin Processor -->
+                    </bizLocation>
+                    <ilmd> <!-- Master Data Related to a specific production lot -->
+                        <cbvmda:lotNumber>YF17B25DHH</cbvmda:lotNumber>
+                        <cbvmda:productionDate>3/14/2016</cbvmda:productionDate>
+                        <cbvmda:storageStateCode>PREVIOUSLY_FROZEN</cbvmda:storageStateCode>
+                        <cbvmda:firstFreezeDate>2016-12-01</cbvmda:firstFreezeDate>
+                    </ilmd>
+                    <!-- EXTENSION -->
+                    <gdst:productOwner>urn:epc:id:pgln:0048000.00001</gdst:productOwner> <!-- PGLN of company who owned products when event occurred. In the case of a transaction, it is the seller. -->
+                    <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+                </TransformationEvent>
+            </extension>
+            <AggregationEvent> <!-- V6 Packing Frozen Loins into Shipping Container -->
+                <eventTime>2017-01-01T14:36:23.125+07:00</eventTime>
+                <eventTimeZoneOffset>+07:00</eventTimeZoneOffset>
+                <parentID>http://epcis.cosintl.com/shippingVanNo/HDMU_5521240</parentID> <!--  QR Code, Container Reference Number -->
+                <childEPCs></childEPCs>
+                <action>ADD</action>
+                <bizStep>urn:epcglobal:cbv:bizstep:packing</bizStep>
+                <disposition>urn:epcglobal:cbv:disp:in_progress</disposition>
+                <readPoint>
+                    <id>geo:22.355092,120.163097</id> <!-- Actual Location where event is captured -->
+                </readPoint>
+                <bizLocation>
+                    <id>urn:epc:id:sgln:0048000.00001.0</id> <!-- Loin Processor -->
+                </bizLocation>
+                <extension>
+                    <childQuantityList>
+                        <quantityElement> <!-- GS1 GTIN + Lot: Yellowfin Tuna Loins -->
+                            <epcClass>urn:epc:class:lgtin:0048000.263267.YF17B25DHH</epcClass> 
+                            <quantity>1152</quantity>
+                            <uom>KGM</uom>
+                        </quantityElement>
+                    </childQuantityList>
+                </extension>
+                <!-- EXTENSION -->
+                <gdst:productOwner>urn:epc:id:pgln:0048000.00001</gdst:productOwner> <!-- PGLN of company who owned products when event occurred. In the case of a transaction, it is the seller. -->
+                <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+            </AggregationEvent>
+            <ObjectEvent> <!-- V7 Shipping From Taiwan Loin Processor to US Canning Facility -->
+                <eventTime>2017-01-01T16:36:23.125+07:00</eventTime>
+                <eventTimeZoneOffset>+07:00</eventTimeZoneOffset>
+                <epcList>
+                    <epc>http://epcis.cosintl.com/shippingVanNo/HDMU_5521240</epc> <!-- Container ID QR Code -->
+                </epcList>
+                <action>OBSERVE</action>
+                <bizStep>urn:epcglobal:cbv:bizstep:shipping</bizStep>
+                <disposition>urn:epcglobal:cbv:disp:in_transit</disposition>
+                <readPoint>
+                    <id>geo:22.355092,120.163097</id> <!-- Actual Location where event is captured -->
+                </readPoint>
+                <bizLocation>
+                    <id>urn:epc:id:sgln:0048000.00001.0</id> <!-- Loin Processor -->
+                </bizLocation>
+                <bizTransactionList> <!-- Customer PO, Shipper Invoice -->
+                    <bizTransaction type="urn:epcglobal:cbv:btt:po">49887-1-1</bizTransaction>
+                    <bizTransaction type="urn:epcglobal:cbv:btt:inv">1180101944</bizTransaction>
+                    <bizTransaction type="urn:gdst:btt:cert">LPCO.2.NM4.99999</bizTransaction> <!-- LPCO Trans Type, type, permit num -->
+                </bizTransactionList>
+                <extension>
+                    <sourceList> <!-- Ship from Taiwan Loin Processor to US Canning Facility  -->
+                        <source type="urn:epcglobal:cbv:sdt:owning_party">urn:epc:id:pgln:0048000.00001.0</source>
+                    </sourceList>
+                    <destinationList>
+                        <destination type="urn:epcglobal:cbv:sdt:owning_party">urn:epc:id:pgln:0048000.00002.0</destination>
+                    </destinationList>
+                </extension>
+
+                <!-- EXTENSION -->
+                <gdst:productOwner>urn:epc:id:pgln:0048000.00001</gdst:productOwner> <!-- PGLN of company who owned products when event occurred. In the case of a transaction, it is the seller. -->
+                <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+
+            </ObjectEvent>
+            <ObjectEvent> <!-- V8 Receiving From Taiwan Loin Processor to US Canning Facility -->
+                <eventTime>2017-01-15T18:36:23.125-05:00</eventTime>
+                <eventTimeZoneOffset>-05:00</eventTimeZoneOffset>
+                <epcList>
+                    <epc>http://epcis.cosintl.com/shippingVanNo/HDMU_5521240</epc> <!--  Container Reference Number -->
+                </epcList>
+                <action>OBSERVE</action>
+                <bizStep>urn:epcglobal:cbv:bizstep:receiving</bizStep>
+                <disposition>urn:epcglobal:cbv:disp:in_transit</disposition>
+                <readPoint>
+                    <id>geo:32.242059,-82.329938</id> <!-- Actual Location where event is captured -->
+                </readPoint>
+                <bizLocation>
+                    <id>urn:epc:id:sgln:0048000.00002.0</id> <!-- US CANNING FACILITY -->
+                </bizLocation>
+
+                <!-- EXTENSION -->
+                <gdst:productOwner>urn:epc:id:pgln:0048000.00001</gdst:productOwner> <!-- PGLN of company who owned products when event occurred. In the case of a transaction, it is the seller. -->
+                <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+
+            </ObjectEvent>
+            <AggregationEvent> <!-- V9 Unpacking Frozen Loins from Shipping Container -->
+                <eventTime>2017-01-15T19:36:23.125+07:00</eventTime>
+                <eventTimeZoneOffset>-05:00</eventTimeZoneOffset>
+                <parentID>http://epcis.cosintl.com/shippingVanNo/HDMU_5521240</parentID> <!--  QR Code, Container Reference Number -->
+                <childEPCs></childEPCs>
+                <action>DELETE</action>
+                <bizStep>urn:epcglobal:cbv:bizstep:unpacking</bizStep>
+                <disposition>urn:epcglobal:cbv:disp:in_progress</disposition>
+                <readPoint>
+                    <id>geo:32.242059,-82.329938</id> <!-- Actual Location where event is captured -->
+                </readPoint>
+                <bizLocation>
+                    <id>urn:epc:id:sgln:0048000.00002.0</id> <!-- US CANNING FACILITY -->
+                </bizLocation>
+                <extension>
+                    <childQuantityList>
+                        <quantityElement> <!-- GS1 GTIN + Lot: Yellowfin Tuna Loins -->
+                            <epcClass>urn:epc:class:lgtin:0048000.263267.YF17B25DHH</epcClass> 
+                            <quantity>1152</quantity>
+                            <uom>KGM</uom>
+                        </quantityElement>
+                    </childQuantityList>
+                </extension>
+                <!-- EXTENSION -->
+                <gdst:productOwner>urn:epc:id:pgln:0048000.00001</gdst:productOwner> <!-- PGLN of company who owned products when event occurred. In the case of a transaction, it is the seller. -->
+                <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+            </AggregationEvent>
+            <extension> <!-- V10 PROCESS INTO CANS -->
+                <TransformationEvent>
+                    <eventTime>2017-01-16T14:36:23.125+07:00</eventTime>
+                    <eventTimeZoneOffset>-05:00</eventTimeZoneOffset>
+                    <inputQuantityList>
+                        <quantityElement> <!-- GS1 GTIN + Lot: Yellowfin Tuna Loins -->
+                            <epcClass>urn:epc:class:lgtin:0048000.263267.YF17B25DHH</epcClass>
+                            <quantity>1767</quantity> <!-- #11 GDST KDE Weight/Quantity -->
+                            <uom>KGM</uom>
+                        </quantityElement>
+                    </inputQuantityList>
+                    <outputQuantityList>
+                        <quantityElement> <!-- Canned Tuna COS GENOVA TONNO 6/6/7 -->
+                            <epcClass>urn:epc:class:lgtin:0048000.163267.8KD1DS64N</epcClass> 
+                            <quantity>1200</quantity> 
+                        </quantityElement>
+                    </outputQuantityList> 
+                    <bizStep>urn:epcglobal:cbv:bizstep:commissioning</bizStep>
+                    <disposition>urn:epcglobal:cbv:disp:active</disposition>
+                    <readPoint>
+                        <id>geo:32.242059,-82.329938</id> <!-- Actual Location where event is captured -->
+                    </readPoint>
+                    <bizLocation>
+                        <id>urn:epc:id:sgln:0048000.00002.0</id> <!-- US CANNING FACILITY -->
+                    </bizLocation>
+                    <bizTransactionList> <!-- Replenishment Purchase Order Number -->
+                        <bizTransaction type="urn:epcglobal:cbv:btt:prodorder">8KD1D</bizTransaction>
+                    </bizTransactionList>
+                    <ilmd> <!-- Attach KDEs for all Inputs (if more than one) -->
+                        <cbvmda:preservationTechniqueCode>CANNING</cbvmda:preservationTechniqueCode> 
+                        <cbvmda:bestBeforeDate>2019-12-15</cbvmda:bestBeforeDate> <!-- #17 GDST KDE Expiry Production Date -->
+                        <cbvmda:certificationList>
+                            <certification> <!-- #6 GDST KDE Fishing Authorization / Organization License, Certs (Aqua) -->
+                                <certificationStandard>MSC</certificationStandard>
+                                <certificationAgency>Agency 101</certificationAgency>
+                                <certificationValue>999</certificationValue>
+                                <certificationIdentification>M11281-11328-FC-TUM-1Y</certificationIdentification> <!-- MSC CERT BATCH NO --> 
+                            </certification>
+                        </cbvmda:certificationList>
+                    </ilmd>
+                    <!-- EXTENSION -->
+                    <gdst:productOwner>urn:epc:id:pgln:0048000.00001</gdst:productOwner> <!-- PGLN of company who owned products when event occurred. In the case of a transaction, it is the seller. -->
+                    <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+                </TransformationEvent>
+            </extension>
+            <AggregationEvent> <!-- V11 Aggregate 480 Cases to a Pallet  -->
+                <eventTime>2017-01-17T04:36:23.582-05:00</eventTime>
+                <eventTimeZoneOffset>-05:00</eventTimeZoneOffset>
+                <parentID>urn:epc:id:sscc:0048000.0000392090</parentID> <!-- Pallet ID 90 -->
+                <childEPCs>
+                </childEPCs>
+                <action>ADD</action>
+                <bizStep>urn:epcglobal:cbv:bizstep:packing</bizStep>
+                <disposition>urn:epcglobal:cbv:disp:in_progress</disposition>
+                <readPoint>
+                    <id>geo:32.242059,-82.329938</id> <!-- Actual Location where event is captured -->
+                </readPoint>
+                <bizLocation>
+                    <id>urn:epc:id:sgln:0048000.00002.0</id> <!-- US CANNING FACILITY -->
+                </bizLocation>
+                <bizTransactionList> <!-- Replenishment Purchase Order Number -->
+                    <bizTransaction type="urn:epcglobal:cbv:btt:po">RO-35909</bizTransaction>
+                </bizTransactionList>
+                <extension>
+                    <childQuantityList>
+                        <quantityElement>
+                            <epcClass>urn:epc:class:lgtin:0048000.163267.8KD1DS64N</epcClass>
+                            <quantity>480</quantity> <!-- UOM is Cases -->
+                        </quantityElement>
+                    </childQuantityList>
+                </extension>
+                <!-- EXTENSION -->
+                <gdst:productOwner>urn:epc:id:pgln:0048000.00001</gdst:productOwner> <!-- PGLN of company who owned products when event occurred. In the case of a transaction, it is the seller. -->
+                <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+            </AggregationEvent>
+            <ObjectEvent> <!-- V12 SHIPPING From US Canning Facility to Retailer -->
+                <eventTime>2017-01-19T15:36:12.125-05:00</eventTime>
+                <eventTimeZoneOffset>-05:00</eventTimeZoneOffset>
+                <epcList>
+                    <epc>urn:epc:id:sscc:0048000.0000392090</epc> <!--  Container Reference Number -->
+                </epcList>
+                <action>OBSERVE</action>
+                <bizStep>urn:epcglobal:cbv:bizstep:shipping</bizStep>
+                <disposition>urn:epcglobal:cbv:disp:in_transit</disposition>
+                <readPoint>
+                    <id>geo:32.242059,-82.329938</id> <!-- Actual Location where event is captured -->
+                </readPoint>
+                <bizLocation>
+                    <id>urn:epc:id:sgln:0048000.00002.0</id> <!-- US CANNING FACILITY -->
+                </bizLocation>
+                <extension>
+                    <sourceList>
+                        <source type="urn:epcglobal:cbv:sdt:location">urn:epc:id:sgln:0048000.00002.0</source> <!-- US CANNING FACILITY -->
+                    </sourceList>
+                    <destinationList>
+                        <destination type="urn:epcglobal:cbv:sdt:location">urn:epc:id:sgln:0099900.00001.0</destination> <!-- Retailer -->
+                    </destinationList>
+                </extension>
+                <!-- EXTENSION -->
+                <gdst:productOwner>urn:epc:id:pgln:0048000.00001</gdst:productOwner> <!-- PGLN of company who owned products when event occurred. In the case of a transaction, it is the seller. -->
+                <cbvmda:informationProvider>urn:epc:id:pgln:0048000.00001</cbvmda:informationProvider> <!-- PGLN of company who input the data. -->
+            </ObjectEvent>
+          </EventList>
+    </EPCISBody>
+</epcis:EPCISDocument>
+
+
